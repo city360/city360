@@ -15,8 +15,10 @@ import Contact from "./pages/Contact";
 import Models from "./pages/Models";
 import Map from "./pages/Map"
 // import
+import {Suspense} from "react";
 import SearchAppBar from "./components/SearchAppBar";
 import SwipeableTemporaryDrawer from "./components/SwipeableTemporaryDrawer";
+import Scene from "./components/ReactModel";
 
 const theme = createTheme({
   palette: {
@@ -33,18 +35,21 @@ ReactDOM.render(
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <HashRouter>
-          <NavBar/>
-          <Routes>
-            {/*<Route path="/" element={<PublishProject model_path='moxing/charge/' model_name='167'/>}/>*/}
-            {/*<Route path="/" element={<SwipeableTemporaryDrawer/>}/>*/}
-            <Route path="/" element={<Home/>}/>
-            {/*<Route path="/" element={<Map/>}/>*/}
-            <Route path="home" element={<Home/>}/>
-            <Route path="publish-project" element={<PublishProject model_path='moxing/charge/' model_name='167'/>}/>
-            <Route path="view-project" element={<ViewProject/>}/>
-            <Route path="contact-us" element={<Map/>}/>
-            <Route path="models" element={<Models/>}/>
-          </Routes>
+          <Suspense fallback={null}>
+            <NavBar/>
+            <Routes>
+              {/*<Route path="/" element={<PublishProject model_path='moxing/charge/' model_name='167'/>}/>*/}
+              {/*<Route path="/" element={<SwipeableTemporaryDrawer/>}/>*/}
+              <Route path="/" element={<Scene model_path='moxing/charge/' model_name='167'/>}/>
+              {/*<Route path="/" element={<Map/>}/>*/}
+              <Route path="home" element={<Home/>}/>
+              <Route path="publish-project" element={<PublishProject model_path='moxing/charge/' model_name='167'/>}/>
+              <Route path="view-project" element={<ViewProject/>}/>
+              <Route path="contact-us" element={<Map/>}/>
+              <Route path="models" element={<Models/>}/>
+            </Routes>
+          </Suspense>
+
         </HashRouter>
       </ThemeProvider>
     </React.StrictMode>,

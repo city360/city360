@@ -12,14 +12,14 @@ import {getPoi} from "../utils";
  * @constructor
  */
 export default function MyMap(props) {
-  // const getLocation=(x,y)=>{
-  //   setLatlng({lat: x, lng: y})
-  //   // let temp = getPoi(x, y)
-  //   // setLocation(temp)
-  //   getPoi(x,y).then((data)=>{
-  //     setLocation(data)
-  //   })
-  // }
+  const getLocation=(x,y)=>{
+    setLatlng({lat: x, lng: y})
+    // let temp = getPoi(x, y)
+    // setLocation(temp)
+    getPoi(x,y).then((data)=>{
+      setLocation(data)
+    })
+  }
   const [latlng, setLatlng] = React.useState({lat:39, lng:116})
   const[location, setLocation] = React.useState('江西省井冈山市')
   // console.log(window.BMapGL.Geocoder)
@@ -32,8 +32,7 @@ export default function MyMap(props) {
   return (
       <div style={{height:'700px', width:'100%'}}>
         <Map onClick={(e) => {
-          // getLocation(e.latlng.lat,e.latlng.lng)
-          console.log("ok")
+          getLocation(e.latlng.lat,e.latlng.lng)
         }} enableScrollWheelZoom={true} center={{lng: latlng.lng, lat: latlng.lat}} zoom="11">
           <Marker position={{lng: latlng.lng, lat: latlng.lat}}/>
           <ScaleControl/>
